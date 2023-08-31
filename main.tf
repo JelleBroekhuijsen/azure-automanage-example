@@ -31,7 +31,6 @@ resource "azurerm_storage_blob" "blob-cm"{
   storage_container_name = azurerm_storage_container.sc.name
   type                   = "Block"
   source                 = ".\\Config_via_Configuration_Management.zip"
-  depends_on = [ null_resource.package-mof-cm ]
 }
 
 resource "azurerm_storage_blob" "blob-policy"{
@@ -40,7 +39,6 @@ resource "azurerm_storage_blob" "blob-policy"{
   storage_container_name = azurerm_storage_container.sc.name
   type                   = "Block"
   source                 = ".\\Config_via_Policy.zip"
-  depends_on = [ null_resource.package-mof-policy ]
 }
   
 # resource "azurerm_virtual_machine_extension" "gc-extension"{
