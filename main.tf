@@ -12,17 +12,3 @@ resource "azurerm_resource_group" "rg" { // This is the resource group that will
   location = "westeurope"
 }
 
-# resource "azurerm_log_analytics_workspace" "logs" {
-#   name                = "azure-automanage-example-log"
-#   location            = azurerm_resource_group.rg.location
-#   resource_group_name = azurerm_resource_group.rg.name
-#   sku                 = "PerGB2018"
-#   retention_in_days   = 30
-# }
-
-# resource "azurerm_automation_account" "automation" {
-#   name                = "azure-automanage-example-aa"
-#   location            = azurerm_resource_group.rg.location
-#   resource_group_name = azurerm_resource_group.rg.name
-#   sku_name            = "Basic"
-# }
