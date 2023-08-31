@@ -11,4 +11,3 @@ resource "azurerm_resource_group" "rg" { // This is the resource group that will
   name     = "azure-automanage-example-rg"
   location = "westeurope"
 }
-

@@ -30,6 +30,8 @@ To validate the Azure Policy configuration, navigate to the Azure Portal and ope
 
 To validate the VM Guest Configuration Management configuration, navigate to the Azure Portal and open the VM blade. Select the VM you created and click on the `Configuration Management` tab. Here you should see the configuration assignment. 
 
+Using this assignment method appears to take a very long time to apply the configuration. I have not been able to figure out why this is the case.
+
 ## Notes
 
 For generating the policy file I used the PowerShell snippet below, as described in the [Azure Automanage Machine Configuration documentation](https://learn.microsoft.com/en-us/azure/governance/machine-configuration/how-to-create-policy-definition#create-an-azure-policy-definition/). However as of the latest version I have been using ([4.5.0]((https://www.powershellgallery.com/packages/GuestConfiguration/4.5.0))) I found that the parameter `PolicyVersion` does not behave properly. It is not possible to provide an versions value formatted like `1.0.0` here. Instead it expects it to be formatted like `'1.0.0'`. This however has the side effect that in the generated `json`-file the version is translated to this string: `"version": "True"`. This is not a valid version and will cause the policy to fail. To fix this, I manually edited the `json`-file and changed the version to the correct value. As this module is currently closed source I have not found a way to report this issue.
