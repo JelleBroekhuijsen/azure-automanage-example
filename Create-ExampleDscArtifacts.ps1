@@ -1,4 +1,3 @@
-#Requires -RunAsAdministrator
 #Requires -Version 7.1.3
 #Requires -Modules @{ ModuleName="GuestConfiguration"; ModuleVersion = "4.5.0"}
 #Requires -Modules @{ ModuleName="PSDesiredStateConfiguration"; ModuleVersion = "2.0.7"}

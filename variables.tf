@@ -1,3 +1,5 @@
+// Variables for AzureRM provider, in case you want to use a service principal
+
 variable "tenant_id" {
   description = "The Azure tenant ID"
   type        = string
