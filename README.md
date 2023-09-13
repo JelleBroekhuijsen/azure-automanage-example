@@ -26,11 +26,9 @@ Both the Azure Policy and the VM Guest Configuration Management configuration ca
 
 To validate the Azure Policy configuration, navigate to the Azure Portal and open the Azure Policy blade. Select the policy you created and click on the `Assignments` tab. Here you should see the policy assignment. If you click on the assignment you can see the compliance state of the policy. If you click on the `View compliance details` button you can see the compliance state of the individual resources. If the resource is in a non-compliant state, you can remediate it by clicking on the `Remediate` button.
 
-### VM Guest Configuration Management
+### On the VM
 
-To validate the VM Guest Configuration Management configuration, navigate to the Azure Portal and open the VM blade. Select the VM you created and click on the `Configuration Management` tab. Here you should see the configuration assignment. 
-
-Using this assignment method appears to take a very long time to apply the configuration. I have not been able to figure out why this is the case.
+To validate that the DSC config has actually been applied, log on to the VM and open the `Environment Variables`-window: `Control Panel > System and Security > System > Advanced system settings > Environment Variables`. In the `System variables`-section you should see a variable named `MC_ENV_CONFIG_MANAGEMENT` and a variable named `MC_ENV_POLICY`. These variables have been set by the DSC configuration.
 
 ## Notes
 
