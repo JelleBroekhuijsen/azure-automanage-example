@@ -1,7 +1,7 @@
 // This file is used to deploy a configuration assignment to a VM using the Guest Configuration extension directly, without Azure Policy
 
 resource "azurerm_policy_virtual_machine_configuration_assignment" "configuration-assignment" { // This is the configuration assignment that will apply the configuration to the VM
-  name               = "example-configuration-assignment"
+  name               = "Config_via_Configuration_Management" //This name needs to match the name of the .mof file in the configuration package
   location           = azurerm_resource_group.rg.location
   virtual_machine_id = azurerm_windows_virtual_machine.vm.id
   configuration {
