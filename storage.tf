@@ -22,6 +22,14 @@ resource "azurerm_storage_blob" "blob-cm" { // This is the blob that will contai
   source                 = ".\\Config_via_Configuration_Management.zip"
 }
 
+resource "azurerm_storage_blob" "blob-choco" { // This is the blob that will contain the configuration file for the configuration assignment
+  name                   = "Install_Package_via_Chocolatey.zip"
+  storage_account_name   = azurerm_storage_account.st.name
+  storage_container_name = azurerm_storage_container.sc.name
+  type                   = "Block"
+  source                 = ".\\Install_Package_via_Chocolatey.zip"
+}
+
 resource "azurerm_storage_blob" "blob-policy" { // This is the blob that will contain the configuration file for the policy assignment
   name                   = "Config_via_Policy.zip"
   storage_account_name   = azurerm_storage_account.st.name

@@ -48,3 +48,20 @@ $PolicyConfig      = @{
 
 New-GuestConfigurationPolicy @PolicyConfig
 ```
+
+### Chocolatey & Guest Configuration
+
+The default Chocolatey DSC Resource (cChoco) is currently not compatible with PowerShell 7 which is required for anything using Azure Machine Configuration. A workaround is to use ChocolateyGet as package provider and install Chocolatey packages that way.
+
+I have added a [sample configuration](./configurations/Install_Package_via_Chocolatey.ps1) showcasing this workaround.
+
+However, there is a very nasty bug in the `GuestConfiguration`-extension that causes a conflict between different versions of the `PackageManagement`-module on a target system. When you build your configuration with the `Import-DscResource -Name PackageManagement, PackageManagementSource` statement, the `PackageManagement`-module will be included in the configuration zip and the `GuestConfiguration`-extension will try to import this at runtime. However since `PackageMangement` is already included in the `GuestConfiguration`-extension this causes a conflict and the configuration will fail. As you cannot build the configuration without the `Import-DscResource`-statement you cannot resolve this issue in a clean way.
+
+To solve this I had to manually delete the module file from the configuration zip after it was created. There is additional code in the `Create-ExampleDscArtifacts.ps1`-script that does this. This is a very ugly workaround and I have not found a better way to solve this issue.
+
+```PowerShell
+
+See the following links for more information:
+
+- [ChocolateyGet](https://github.com/Jianyunt/ChocolateyGet)
+- [Open cChoco issue regarding Azure Machine Configuration on github](https://github.com/chocolatey/cChoco/issues/173)
