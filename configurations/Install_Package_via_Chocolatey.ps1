@@ -9,8 +9,10 @@ Configuration Install_Package_via_Chocolatey
 
 	PackageManagement vscode {
 		Name         = 'vscode'
+		RequiredVersion = 'latest'
 		ProviderName = 'ChocolateyGet'
 		DependsOn    = '[PackageManagement]ChocolateyGet'
+		Ensure       = 'Present'
 	}
 }
 
