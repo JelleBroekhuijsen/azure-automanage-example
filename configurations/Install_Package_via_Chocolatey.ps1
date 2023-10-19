@@ -1,6 +1,6 @@
 Configuration Install_Package_via_Chocolatey
 {
-	Import-DscResource -Name PackageManagement, PackageManagementSource
+	Import-DscResource -Name PackageManagement, PackageManagementSource -ModuleName @{ModuleName='PackageManagement';RequiredVersion='1.4.7'}
   
 	PackageManagement ChocolateyGet {
 		Name   = 'ChocolateyGet'

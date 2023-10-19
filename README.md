@@ -11,6 +11,7 @@ The following requirements are needed on the machine/agent executing the terrafo
 - [Powershell 7.1.3](https://github.com/PowerShell/PowerShell/releases/tag/v7.1.3) or higher
 - Powershell Module: [Guest Configuration 4.5.0](https://www.powershellgallery.com/packages/GuestConfiguration/4.5.0) or higher
 - Powershell Module: [PSDesiredStateConfiguration 2.0.7](https://www.powershellgallery.com/packages/PSDesiredStateConfiguration/2.0.7) or higher
+- Powershell Module: [PackageManagement 1.4.7](https://www.powershellgallery.com/packages/PackageManagement/1.4.7) exactly!
   
 ## Usage
 
@@ -57,9 +58,9 @@ I have added a [sample configuration](./configurations/Install_Package_via_Choco
 
 However, there is a very nasty bug in the `GuestConfiguration`-extension that causes a conflict between different versions of the `PackageManagement`-module on a target system. When you build your configuration with the `Import-DscResource -Name PackageManagement, PackageManagementSource` statement, the `PackageManagement`-module will be included in the configuration zip and the `GuestConfiguration`-extension will try to import this at runtime. However since `PackageMangement` is already included in the `GuestConfiguration`-extension this causes a conflict and the configuration will fail. As you cannot build the configuration without the `Import-DscResource`-statement you cannot resolve this issue in a clean way.
 
-To solve this I had to manually delete the module file from the configuration zip after it was created. There is additional code in the `Create-ExampleDscArtifacts.ps1`-script that does this. This is a very ugly workaround and I have not found a better way to solve this issue.
+Additionally, the version of the `PackageManagement`-module on the the machine compiling the guest configurations (via `New-GuestConfigurationPackage`) needs to match the version shipped with the `GuestConfiguration`-extension, which is `1.4.7` at the time of writing.
 
-```PowerShell
+To solve this I had to manually delete the module file from the configuration zip after it was created. There is additional code in the `Create-ExampleDscArtifacts.ps1`-script that does this. This is a very ugly workaround and I have not found a better way to solve this issue.
 
 See the following links for more information:
 
